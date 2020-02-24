@@ -1,65 +1,118 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(new Application());
-
-class Application extends StatefulWidget {
-  @override
-  _ApplicationState createState() => new _ApplicationState();
+void main() {
+  runApp(new MaterialApp(home: new HomePage()));
 }
 
-class _ApplicationState extends State<Application> with SingleTickerProviderStateMixin {
-
-  TabController controller;
+class HomePage extends StatefulWidget {
   @override
-  void initState() {
-    super.initState();
-    controller = new TabController(length: 3, vsync: this);
-  }
+  _HomePageState createState() => _HomePageState();
+}
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return  new MaterialApp(
-        title: "Serhat Sait",
-        home: new Scaffold(
-          appBar: new AppBar(title: new Text("Serhat Sait"),
-            bottom: new TabBar(
-                controller: controller,
-                tabs:[
-                  new Tab(text: "TAB 1" ,),
-                  new Tab(text: "TAB 2",),
-                  new Tab(text: "TAB 3",),
-                ]),
-            backgroundColor: Colors.deepOrange,
-          ),
-          bottomNavigationBar: new Material(
-            color: Colors.deepOrange,
-            child: new TabBar(
-                controller: controller,
-                tabs:[
-                  new Tab(text: "TAB 1" ,),
-                  new Tab(text: "TAB 2",),
-                  new Tab(text: "TAB 3",),
-                ]),
-          ),
+    return Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Colors.red,
+        title: Text('Serhat Sait'),
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          new IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+              onPressed: () {})
+        ],
+      ),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            //header
+            new UserAccountsDrawerHeader(
+              accountName: Text('Roberto Baggio'),
+              accountEmail: Text('robertobg@gmail.com'),
+              currentAccountPicture: GestureDetector(
+                child: new CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              decoration: new BoxDecoration(color: Colors.red),
+            ),
 
-          body:  new TabBarView(
-            controller: controller,
-            children: <Widget>[
-              new Center(child:new Text("Serhat Sait Pekediz") ,),
-              new Center(child:new Text("TheMasspace") ,),
-              new Center(child:new Text("Tab1 View 3") ,),
-            ],
-          ),
-        )
+            //body
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('Home Page'),
+                leading: Icon(Icons.home),
+              ),
+            ),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('My Account'),
+                leading: Icon(Icons.person),
+              ),
+            ),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('My Orders'),
+                leading: Icon(Icons.shopping_basket),
+              ),
+            ),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('Categories'),
+                leading: Icon(Icons.dashboard),
+              ),
+            ),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('Favorities'),
+                leading: Icon(Icons.favorite),
+              ),
+            ),
+
+            Divider(),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('Settings'),
+                leading: Icon(Icons.settings),
+              ),
+            ),
+
+            InkWell(
+              onTap: (){},
+              child: ListTile(
+                title: Text('About'),
+                leading: Icon(Icons.help),
+              ),
+            ),
+
+          ],
+        ),
+      ),
     );
   }
 }
-
-
-
